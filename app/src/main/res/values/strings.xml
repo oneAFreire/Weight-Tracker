@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Weight Tracker</string>
+    <string name="home">Home</string>
+    <string name="statistics">Statistics</string>
+    <string name="records">Records</string>
+    <string name="last_measurement">Last Measurement</string>
+
+    <string name="date">Date</string>
+    <string name="weight">Weight</string>
+    <string name="body_fat">Body Fat</string>
+    <string name="body_water">Body Water</string>
+    <string name="visceral_fat">Visceral Fat</string>
+    <string name="body_mass">Body Mass</string>
+    <string name="daily_calories">Daily Calories</string>
+
+    <string name="display_units_kg">Kg</string>
+    <string name="display_units_lbs">Lbs</string>
+    <string name="display_units_percentage">%</string>
+    <string name="display_units_kcal">Kcal</string>
+
+    <string name="diff_last_measurements">Difference between the last 2 measurements</string>
+    <string name="diff_last_30_days">Difference in last 30 days</string>
+    <string name="diff_current_year">Difference in current year</string>
+    <string name="diff_last_year">Difference in last year</string>
+    <string name="diff_last_entry">Difference from first measurement</string>
+</resources>
