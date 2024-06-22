@@ -1,6 +1,6 @@
 plugins {
-    id("kotlin")
-    id("java-library")
+    alias(libs.plugins.jetbrainsKotlinJvm)
+    id(libs.plugins.javaLibrary.get().pluginId)
 }
 
 java {
@@ -15,8 +15,8 @@ tasks.compileKotlin {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation(libs.kotlinx.coroutines.core)
 
     // Testing
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.junit)
 }
