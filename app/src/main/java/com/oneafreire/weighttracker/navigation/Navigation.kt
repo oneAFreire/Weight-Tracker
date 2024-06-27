@@ -26,7 +26,10 @@ fun Navigation() {
             HomeScreen(
                 navController = navController,
                 screenState = uiState,
-                currentScreen = Screen.Home
+                currentScreen = Screen.Home,
+                onAddMeasurement = { measurement ->
+                    homeViewModel.insertMeasurement(measurement)
+                }
             )
         }
 

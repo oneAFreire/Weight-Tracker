@@ -28,7 +28,6 @@ class StatisticsViewModel @Inject constructor(
         viewModelScope.launch {
             getStatisticsScreenDataUseCase.invoke().collect { result ->
 
-                // TODO
                 when (result) {
                     is Resource.Success -> {
                         _uiState.update {
@@ -47,11 +46,25 @@ class StatisticsViewModel @Inject constructor(
                     }
 
                     is Resource.Error -> {
-
+                        _uiState.update {
+                            it.copy(
+                                navItemList = BottomBarItemHelper.parseListToUIItem(
+                                    result.data?.navItemList,
+                                    appContext.resources
+                                )
+                            )
+                        }
                     }
 
                     is Resource.Loading -> {
-
+                        _uiState.update {
+                            it.copy(
+                                navItemList = BottomBarItemHelper.parseListToUIItem(
+                                    result.data?.navItemList,
+                                    appContext.resources
+                                )
+                            )
+                        }
                     }
                 }
             }

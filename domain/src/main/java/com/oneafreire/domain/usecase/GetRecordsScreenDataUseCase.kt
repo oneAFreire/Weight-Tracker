@@ -20,13 +20,19 @@ class GetRecordsScreenDataUseCase(
         if (menuEntries.isEmpty()) {
             emit(
                 Resource.Error(
-                    ErrorMessage.EMPTY_MENU
+                    ErrorMessage.EMPTY_MENU,
+                    RecordsScreenData(
+                        navItemList = menuEntries
+                    )
                 )
             )
         } else if (records.isEmpty()) {
             emit(
                 Resource.Error(
-                    ErrorMessage.EMPTY_DATA
+                    ErrorMessage.EMPTY_DATA,
+                    RecordsScreenData(
+                        navItemList = menuEntries
+                    )
                 )
             )
         } else {

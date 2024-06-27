@@ -4,8 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +20,6 @@ import com.oneafreire.weighttracker.R
 import com.oneafreire.weighttracker.model.StatisticsScreenState
 import com.oneafreire.weighttracker.navigation.Screen
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StatisticsScreen(
     navController: NavHostController,
@@ -96,7 +94,7 @@ fun DiffInfoUI(title: String, data: WeightMeasurementDiff) {
             text = title,
             fontWeight = FontWeight.Bold
         )
-        Divider(color = Color.LightGray, thickness = 1.dp)
+        HorizontalDivider(thickness = 1.dp, color = Color.LightGray)
         InfoText(
             description = stringResource(id = R.string.weight),
             value = data.weight.toString(),

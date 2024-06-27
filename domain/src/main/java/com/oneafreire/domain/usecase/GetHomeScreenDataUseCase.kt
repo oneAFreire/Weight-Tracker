@@ -20,13 +20,19 @@ class GetHomeScreenDataUseCase(
         if (menuEntries.isEmpty()) {
             emit(
                 Resource.Error(
-                    ErrorMessage.EMPTY_MENU
+                    ErrorMessage.EMPTY_MENU,
+                    HomeScreenData(
+                        navItemList = menuEntries
+                    )
                 )
             )
         } else if (lastMeasurement == null) {
             emit(
                 Resource.Error(
-                    ErrorMessage.EMPTY_DATA
+                    ErrorMessage.EMPTY_DATA,
+                    HomeScreenData(
+                        navItemList = menuEntries
+                    )
                 )
             )
         } else {

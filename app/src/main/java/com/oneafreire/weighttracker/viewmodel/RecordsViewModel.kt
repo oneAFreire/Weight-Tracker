@@ -32,7 +32,6 @@ class RecordsViewModel @Inject constructor(
         viewModelScope.launch {
             getRecordsScreenDataUseCase.invoke().collect { result ->
 
-                // TODO
                 when (result) {
                     is Resource.Success -> {
                         _uiState.update {
@@ -47,11 +46,25 @@ class RecordsViewModel @Inject constructor(
                     }
 
                     is Resource.Error -> {
-
+                        _uiState.update {
+                            it.copy(
+                                navItemList = BottomBarItemHelper.parseListToUIItem(
+                                    result.data?.navItemList,
+                                    appContext.resources
+                                )
+                            )
+                        }
                     }
 
                     is Resource.Loading -> {
-
+                        _uiState.update {
+                            it.copy(
+                                navItemList = BottomBarItemHelper.parseListToUIItem(
+                                    result.data?.navItemList,
+                                    appContext.resources
+                                )
+                            )
+                        }
                     }
                 }
             }

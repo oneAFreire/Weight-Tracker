@@ -9,6 +9,7 @@ import com.oneafreire.domain.usecase.GetMenuEntriesUseCase
 import com.oneafreire.domain.usecase.GetRecordsScreenDataUseCase
 import com.oneafreire.domain.usecase.GetStatisticsScreenDataUseCase
 import com.oneafreire.domain.usecase.GetWeightMeasurementsUseCase
+import com.oneafreire.domain.usecase.SaveWeightMeasurementUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,47 +22,69 @@ object UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun providesGetWeightMeasurementsUseCase(): GetWeightMeasurementsUseCase {
-        return GetWeightMeasurementsUseCase(WeightMeasurementsRepositoryImpl())
+    fun providesGetWeightMeasurementsUseCase(
+        weightMeasurementsRepositoryImpl: WeightMeasurementsRepositoryImpl
+    ): GetWeightMeasurementsUseCase {
+        return GetWeightMeasurementsUseCase(weightMeasurementsRepositoryImpl)
     }
 
     @Provides
     @ViewModelScoped
-    fun providesGetMenuEntriesUseCase(): GetMenuEntriesUseCase {
-        return GetMenuEntriesUseCase(MenuEntriesRepositoryImpl())
+    fun providesGetMenuEntriesUseCase(menuEntriesRepositoryImpl: MenuEntriesRepositoryImpl): GetMenuEntriesUseCase {
+        return GetMenuEntriesUseCase(menuEntriesRepositoryImpl)
     }
 
     @Provides
     @ViewModelScoped
-    fun providesGetHomeViewStateUseCase(): GetHomeScreenDataUseCase {
+    fun providesGetLastMeasurementUseCase(
+        weightMeasurementsRepositoryImpl: WeightMeasurementsRepositoryImpl
+    ): GetLastMeasurementUseCase {
+        return GetLastMeasurementUseCase(weightMeasurementsRepositoryImpl)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun providesGetHomeViewStateUseCase(
+        getMenuEntriesUseCase: GetMenuEntriesUseCase,
+        getLastMeasurementUseCase: GetLastMeasurementUseCase
+    ): GetHomeScreenDataUseCase {
         return GetHomeScreenDataUseCase(
-            providesGetMenuEntriesUseCase(),
-            providesGetLastMeasurementUseCase()
+            getMenuEntriesUseCase,
+            getLastMeasurementUseCase
         )
     }
 
     @Provides
     @ViewModelScoped
-    fun providesGetRecordsScreenDataUseCase(): GetRecordsScreenDataUseCase {
+    fun providesGetRecordsScreenDataUseCase(
+        getMenuEntriesUseCase: GetMenuEntriesUseCase,
+        getWeightMeasurementsUseCase: GetWeightMeasurementsUseCase
+    ): GetRecordsScreenDataUseCase {
         return GetRecordsScreenDataUseCase(
-            providesGetMenuEntriesUseCase(),
-            providesGetWeightMeasurementsUseCase()
+            getMenuEntriesUseCase,
+            getWeightMeasurementsUseCase
         )
     }
 
     @Provides
     @ViewModelScoped
-    fun providesGetStatisticsScreenDataUseCase(): GetStatisticsScreenDataUseCase {
+    fun providesGetStatisticsScreenDataUseCase(
+        getMenuEntriesUseCase: GetMenuEntriesUseCase,
+        weightMeasurementsRepositoryImpl: WeightMeasurementsRepositoryImpl,
+        settingsRepositoryImpl: SettingsRepositoryImpl
+    ): GetStatisticsScreenDataUseCase {
         return GetStatisticsScreenDataUseCase(
-            providesGetMenuEntriesUseCase(),
-            WeightMeasurementsRepositoryImpl(),
-            SettingsRepositoryImpl()
+            getMenuEntriesUseCase,
+            weightMeasurementsRepositoryImpl,
+            settingsRepositoryImpl
         )
     }
 
     @Provides
     @ViewModelScoped
-    fun providesGetLastMeasurementUseCase(): GetLastMeasurementUseCase {
-        return GetLastMeasurementUseCase(WeightMeasurementsRepositoryImpl())
+    fun providesSaveWeightMeasurementUseCase(
+        weightMeasurementsRepositoryImpl: WeightMeasurementsRepositoryImpl
+    ): SaveWeightMeasurementUseCase {
+        return SaveWeightMeasurementUseCase(weightMeasurementsRepositoryImpl)
     }
 }

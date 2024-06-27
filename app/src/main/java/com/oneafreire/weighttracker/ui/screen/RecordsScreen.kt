@@ -8,12 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,7 +27,6 @@ import com.oneafreire.weighttracker.ui.theme.surface
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecordsScreen(
     navController: NavHostController,
@@ -49,9 +42,6 @@ fun RecordsScreen(
                 onRefreshData = { onRefreshData() }
             )
         },
-        // TODO
-        // Create export data feature
-       // floatingActionButton = { FabExportData {} },
         bottomBar = {
             BottomNavigationBar(
                 navController = navController,
@@ -60,15 +50,6 @@ fun RecordsScreen(
             )
         }
     )
-}
-
-@Composable
-fun FabExportData(onClick: () -> Unit) {
-    FloatingActionButton(
-        onClick = { onClick() }
-    ) {
-        Icon(Icons.Filled.ExitToApp, "Floating action button.")
-    }
 }
 
 @OptIn(ExperimentalFoundationApi::class)

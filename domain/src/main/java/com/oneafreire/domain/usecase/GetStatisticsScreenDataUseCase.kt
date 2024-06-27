@@ -9,6 +9,8 @@ import com.oneafreire.domain.repository.SettingsRepository
 import com.oneafreire.domain.repository.WeightMeasurementsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.util.Calendar
+import java.util.Date
 
 class GetStatisticsScreenDataUseCase(
     private val getMenuEntriesUseCase: GetMenuEntriesUseCase,
@@ -19,12 +21,34 @@ class GetStatisticsScreenDataUseCase(
 
         emit(Resource.Loading(StatisticsScreenData()))
 
+        val calendar = Calendar.getInstance()
+
+        // Set calendar to the start of last year
+        calendar.set(Calendar.DAY_OF_YEAR, 1)
+        calendar.add(Calendar.YEAR, -1)
+        val startOfLastYear = calendar.time
+
+        // Set calendar to the end of last year
+        calendar.set(Calendar.MONTH, Calendar.DECEMBER)
+        calendar.set(Calendar.DAY_OF_MONTH, 31)
+        val endOfLastYear = calendar.time
+
+        // Set calendar for the start of the current year
+        calendar.set(Calendar.DAY_OF_YEAR, 1)
+        calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR))
+        val startOfYear = calendar.time
+
+        // Set the calendar for the last 30 days
+        calendar.time = Date() // Reset calendar to the current date
+        calendar.add(Calendar.DAY_OF_YEAR, -30)
+        val last30Days = calendar.time
+
         val menuEntries = getMenuEntriesUseCase.invoke()
         val displayUnits = settingsRepository.current().displayUnits
         val allMeasurements = weightMeasurementsRepository.records()
-        val last30DaysMeasurements = weightMeasurementsRepository.last30DaysRecords()
-        val currentYearMeasurements = weightMeasurementsRepository.currentYearRecords()
-        val lastYearMeasurements = weightMeasurementsRepository.lastYearRecords()
+        val last30DaysMeasurements = weightMeasurementsRepository.getMeasurementsFromDate(last30Days)
+        val currentYearMeasurements = weightMeasurementsRepository.getMeasurementsFromDate(startOfYear)
+        val lastYearMeasurements = weightMeasurementsRepository.getMeasurementsBetweenDates(startOfLastYear, endOfLastYear)
 
         var diffLastMeasurement: WeightMeasurementDiff? = null
         var diffLast30Days: WeightMeasurementDiff? = null

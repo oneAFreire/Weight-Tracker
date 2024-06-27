@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.jetbrainsKotlinKapt)
     alias(libs.plugins.googleDaggerHiltAndroid)
+    alias(libs.plugins.googleDevtoolsKsp)
 }
 
 android {
@@ -35,16 +36,21 @@ android {
 }
 
 dependencies {
-    // modules
+    // Modules
     implementation(project(mapOf("path" to ":domain")))
 
-    // android
+    // Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 
     // Dagger-Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     // Testing
     testImplementation(libs.junit)

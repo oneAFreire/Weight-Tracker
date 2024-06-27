@@ -2,12 +2,12 @@ package com.oneafreire.weighttracker.ui.helper
 
 import android.content.res.Resources
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.List
 import com.oneafreire.domain.common.BottomBarItem
 import com.oneafreire.weighttracker.R
 import com.oneafreire.weighttracker.model.BottomNavigationItem
@@ -46,8 +46,8 @@ object BottomBarItemHelper {
             BottomBarItem.RECORDS -> {
                 return BottomNavigationItem(
                     title = resources.getString(R.string.records),
-                    selectedIcon = Icons.Filled.List,
-                    unselectedIcon = Icons.Outlined.List,
+                    selectedIcon = Icons.AutoMirrored.Filled.List,
+                    unselectedIcon = Icons.AutoMirrored.Outlined.List,
                     screen = Screen.Records
                 )
             }
