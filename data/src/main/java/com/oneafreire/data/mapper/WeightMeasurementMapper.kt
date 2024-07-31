@@ -5,28 +5,20 @@ import com.oneafreire.domain.model.WeightMeasurement
 
 class WeightMeasurementMapper {
     operator fun invoke(entry: WeightMeasurementEntity?): WeightMeasurement? {
-        return if (entry == null) {
-            null
-        } else {
+        return entry?.let {
             WeightMeasurement(
-                date = entry.date,
-                weight = entry.weight,
-                bodyFat = entry.bodyFat,
-                bodyWater = entry.bodyWater,
-                visceralFat = entry.visceralFat,
-                bodyMass = entry.bodyMass,
-                dailyCalories = entry.dailyCalories
+                date = it.date,
+                weight = it.weight,
+                bodyFat = it.bodyFat,
+                bodyWater = it.bodyWater,
+                visceralFat = it.visceralFat,
+                bodyMass = it.bodyMass,
+                dailyCalories = it.dailyCalories
             )
         }
     }
 
     fun parseList(list: List<WeightMeasurementEntity>): List<WeightMeasurement> {
-        val returnList: MutableList<WeightMeasurement> = mutableListOf()
-
-        for (entry in list) {
-            invoke(entry)?.let { returnList.add(it) }
-        }
-
-        return returnList
+        return list.mapNotNull { invoke(it) }
     }
 }

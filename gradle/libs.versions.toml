@@ -1,11 +1,12 @@
 [versions]
 accompanistSwiperefresh = "0.27.0"
-agp = "8.5.0"
+agp = "8.5.1"
 activityCompose = "1.9.0"
 appcompat = "1.7.0"
 composeBom = "2024.06.00"
 coreKtx = "1.13.1"
 espressoCore = "3.6.1"
+gson = "2.10.1"
 hiltAndroid = "2.49"
 hiltCompiler = "2.47"
 hiltNavigationCompose = "1.2.0"
@@ -13,6 +14,10 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 kotlinxCoroutinesCore = "1.7.3"
 lifecycleRuntimeKtx = "2.8.2"
+mockito = "4.5.1"
+mockitoKotlin = "3.11.2"
+mockitoKotlinVersion = "2.2.0"
+mockk = "1.12.0"
 navigationCompose = "2.7.7"
 jetbrainsKotlinJvm = "1.9.10"
 kotlin = "1.9.10"
@@ -43,10 +48,16 @@ androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockitokotlin2-mockito-kotlin = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlinVersion" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

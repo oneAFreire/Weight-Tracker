@@ -6,8 +6,9 @@ import com.oneafreire.data.mapper.WeightMeasurementMapper
 import com.oneafreire.domain.model.WeightMeasurement
 import com.oneafreire.domain.repository.WeightMeasurementsRepository
 import java.util.Date
+import javax.inject.Inject
 
-class WeightMeasurementsRepositoryImpl(
+class WeightMeasurementsRepositoryImpl @Inject constructor(
     private val weightMeasurementDao: WeightMeasurementDao
 ) : WeightMeasurementsRepository {
     override suspend fun records(): List<WeightMeasurement> {

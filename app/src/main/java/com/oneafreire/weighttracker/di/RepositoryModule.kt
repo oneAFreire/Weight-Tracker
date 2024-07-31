@@ -1,5 +1,7 @@
 package com.oneafreire.weighttracker.di
 
+import android.content.SharedPreferences
+import com.google.gson.Gson
 import com.oneafreire.data.db.dao.WeightMeasurementDao
 import com.oneafreire.data.repositoryimpl.MenuEntriesRepositoryImpl
 import com.oneafreire.data.repositoryimpl.SettingsRepositoryImpl
@@ -30,7 +32,10 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideSettingsRepositoryImpl(): SettingsRepositoryImpl {
-        return SettingsRepositoryImpl()
+    fun provideSettingsRepositoryImpl(
+        sharedPreferences: SharedPreferences,
+        gson: Gson
+    ): SettingsRepositoryImpl {
+        return SettingsRepositoryImpl(sharedPreferences, gson)
     }
 }
